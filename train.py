@@ -14,7 +14,7 @@ from torchvision import transforms
 from torch.autograd import Variable
 import torch.backends.cudnn as cudnn
 import torchvision.datasets as datasets
-
+from ptflops import get_model_complexity_info
 import os
 import argparse
 
@@ -125,7 +125,12 @@ def main():
     # get the number of model parameters
     print('Number of model parameters: {}'.format(
         sum([p.data.nelement() for p in model.parameters()])))
-
+    
+    macs, params = get_model_complexity_info(model, (3, 224, 224), as_strings=True,
+                                           print_per_layer_stat=True, verbose=True)
+    print('{:<30}  {:<8}'.format('Computational complexity: ', macs))
+    print('{:<30}  {:<8}'.format('Number of parameters: ', params))
+    
     if args.test:
         test_acc = validate(val_loader, model, criterion, 350)
         sys.exit()
