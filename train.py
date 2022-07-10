@@ -97,7 +97,7 @@ def main():
 
     model = torch.nn.DataParallel(model).cuda()
     print('/n/n/Shape:n//n')
-    for i, (images, labels) in enumerate(trainloader):
+    for i, (images, labels) in enumerate(train_loader):
         print(type(images))
         print(images.shape)
         break
