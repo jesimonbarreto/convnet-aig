@@ -93,7 +93,6 @@ def main():
     val_loader = torch.utils.data.DataLoader(
         datasets.CIFAR10('../data', train=False, transform=transform_test),
         batch_size=args.batch_size, shuffle=False, **kwargs)
-    print('train loader shape', train_loader.s)
     model = ResNet110_cifar(nclass=10)
 
     model = torch.nn.DataParallel(model).cuda()
