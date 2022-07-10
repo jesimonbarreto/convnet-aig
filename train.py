@@ -93,11 +93,15 @@ def main():
     val_loader = torch.utils.data.DataLoader(
         datasets.CIFAR10('../data', train=False, transform=transform_test),
         batch_size=args.batch_size, shuffle=False, **kwargs)
-    
+    print('train loader shape', train_loader.s)
     model = ResNet110_cifar(nclass=10)
 
     model = torch.nn.DataParallel(model).cuda()
-
+    print('/n/n/Shape:n//n')
+    for i, (images, labels) in enumerate(trainloader):
+        print(type(images))
+        print(images.shape)
+        break
     # optionally resume from a checkpoint
     if args.resume:
         latest_checkpoint = os.path.join(args.resume, 'checkpoint.pth.tar')
