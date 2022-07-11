@@ -77,7 +77,7 @@ class BasicBlock(nn.Module):
 
         # Gate layers
         self.fc1 = nn.Conv2d(in_planes, 16, kernel_size=1)
-        self.fc1bn = nn.BatchNorm1d(16)
+        self.fc1bn = nn.BatchNorm2d(16)
         self.fc2 = nn.Conv2d(16, 2, kernel_size=1)
         # initialize the bias of the last fc for 
         # initial opening rate of the gate of about 85%
@@ -124,7 +124,7 @@ class Bottleneck(nn.Module):
 
         # Gate layers
         self.fc1 = nn.Conv2d(in_planes, 16, kernel_size=1)
-        self.fc1bn = nn.BatchNorm1d(16)
+        self.fc1bn = nn.BatchNorm2d(16)
         self.fc2 = nn.Conv2d(16, 2, kernel_size=1)
         # initialize the bias of the last fc for 
         # initial opening rate of the gate of about 85%

@@ -96,11 +96,7 @@ def main():
     model = ResNet110_cifar(nclass=10)
 
     model = torch.nn.DataParallel(model).cuda()
-    print('/n/n/Shape:n//n')
-    for i, (images, labels) in enumerate(train_loader):
-        print(type(images))
-        print(images.shape)
-        break
+
     # optionally resume from a checkpoint
     if args.resume:
         latest_checkpoint = os.path.join(args.resume, 'checkpoint.pth.tar')
@@ -129,10 +125,10 @@ def main():
     print('Number of model parameters: {}'.format(
         sum([p.data.nelement() for p in model.parameters()])))
     
-    macs, params = get_model_complexity_info(model, (3, 224, 224), as_strings=True,
-                                           print_per_layer_stat=True, verbose=True)
-    print('{:<30}  {:<8}'.format('Computational complexity: ', macs))
-    print('{:<30}  {:<8}'.format('Number of parameters: ', params))
+    #macs, params = get_model_complexity_info(model, (3, 224, 224), as_strings=True,
+    #                                       print_per_layer_stat=True, verbose=True)
+    #print('{:<30}  {:<8}'.format('Computational complexity: ', macs))
+    #print('{:<30}  {:<8}'.format('Number of parameters: ', params))
     
     if args.test:
         test_acc = validate(val_loader, model, criterion, 350)
@@ -182,6 +178,8 @@ def train(train_loader, model, criterion, optimizer, epoch):
     
     for i, (input, target) in enumerate(train_loader):
         target = target.cuda(async=True)
+        print(input.shape)
+        print(input.dim())
         input = input.cuda()
         input_var = torch.autograd.Variable(input)
         target_var = torch.autograd.Variable(target)
