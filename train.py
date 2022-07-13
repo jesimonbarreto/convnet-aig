@@ -206,9 +206,9 @@ def train(train_loader, model, criterion, optimizer, epoch):
 
         # measure accuracy and record loss
         prec1 = accuracy(output.data, target, topk=(1,))[0]
-        losses.update(loss.data[0], input.size(0))
+        losses.update(loss.data, input.size(0))
         losses_c.update(loss_classify.data[0], input.size(0))
-        losses_t.update(act_loss.data[0], input.size(0))
+        losses_t.update(act_loss.data, input.size(0))
         
         top1.update(prec1[0], input.size(0))
         activations.update(acts_plot.data[0], 1)
@@ -277,7 +277,7 @@ def validate(val_loader, model, criterion, epoch):
 
         # measure accuracy and record loss
         prec1 = accuracy(output.data, target, topk=(1,))[0]
-        losses.update(loss.data[0], input.size(0))
+        losses.update(loss.data, input.size(0))
         top1.update(prec1[0], input.size(0))
         activations.update(acts.data[0], 1)
 
