@@ -210,8 +210,8 @@ def train(train_loader, model, criterion, optimizer, epoch):
         losses_c.update(loss_classify.data, input.size(0))
         losses_t.update(act_loss.data, input.size(0))
         
-        top1.update(prec1[0], input.size(0))
-        activations.update(acts_plot.data[0], 1)
+        top1.update(prec1, input.size(0))
+        activations.update(acts_plot.data, 1)
 
         # compute gradient and do SGD step
         optimizer.zero_grad()
