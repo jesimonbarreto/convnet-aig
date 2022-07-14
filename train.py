@@ -178,8 +178,6 @@ def train(train_loader, model, criterion, optimizer, epoch):
     
     for i, (input, target) in enumerate(train_loader):
         target = target.cuda(async=True)
-        print(input.shape)
-        print(input.dim())
         input = input.cuda()
         input_var = torch.autograd.Variable(input)
         target_var = torch.autograd.Variable(target)
