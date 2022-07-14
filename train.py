@@ -278,8 +278,8 @@ def validate(val_loader, model, criterion, epoch):
         # measure accuracy and record loss
         prec1 = accuracy(output.data, target, topk=(1,))[0]
         losses.update(loss.data, input.size(0))
-        top1.update(prec1[0], input.size(0))
-        activations.update(acts.data[0], 1)
+        top1.update(prec1, input.size(0))
+        activations.update(acts.data, 1)
 
         # measure elapsed time
         batch_time.update(time.time() - end)
