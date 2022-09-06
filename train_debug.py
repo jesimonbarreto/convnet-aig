@@ -25,6 +25,9 @@ from visdom import Visdom
 import numpy as np
 import gc
 
+import pydevd_pycharm
+pydevd_pycharm.settrace('172.22.100.3', port=12345, stdoutToServer=True,
+                        stderrToServer=True)
 
 expname='give_me_a_name_cifar'
 lrfact=1
